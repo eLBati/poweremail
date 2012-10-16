@@ -228,9 +228,9 @@ class poweremail_send_wizard(osv.osv_memory):
             context['src_rec_ids'] = context['src_rec_ids'][:1]
 
         for id in context['src_rec_ids']:
-            accounts = self.pool.get('poweremail.core_accounts').read(cr, uid, screen_vals['from'], context=context)
+            accounts = self.pool.get('poweremail.core_accounts').browse(cr, uid, screen_vals['from'], context=context)
             vals = {
-                'pem_from': tools.ustr(accounts['name']) + "<" + tools.ustr(accounts['email_id']) + ">",
+                'pem_from': tools.ustr(accounts.name) + "<" + tools.ustr(accounts.email_id) + ">",
                 'pem_to': get_end_value(id, screen_vals['to']),
                 'pem_cc': get_end_value(id, screen_vals['cc']),
                 'pem_bcc': get_end_value(id, screen_vals['bcc']),
